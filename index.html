@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sister.exe — Happy Birthday Navya 💻💖</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Fredoka:wght@400;600;700&family=Caveat:wght@600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#090d16',
+                        terminalCard: '#131926',
+                        neonPink: '#ff2a85',
+                        neonCyan: '#00f5d4',
+                        neonPurple: '#9d4edf',
+                        softPink: '#ffb6c1',
+                        pastelYellow: '#fef08a',
+                        pastelPink: '#fbcfe8',
+                        codeGreen: '#10b981'
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', 'monospace'],
+                        cute: ['"Fredoka"', 'sans-serif'],
+                        handwritten: ['"Caveat"', 'cursive'],
+                        pixel: ['"Press Start 2P"', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #090d16;
+            color: #f1f5f9;
+            font-family: 'Fira Code', monospace;
+            overflow-x: hidden;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Glassmorphism elements */
+        .glass-panel {
+            background: rgba(19, 25, 38, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 42, 133, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(255, 42, 133, 0.15);
+        }
+
+        .neon-glow-pink {
+            box-shadow: 0 0 20px rgba(255, 42, 133, 0.4), inset 0 0 10px rgba(255, 42, 133, 0.2);
+        }
+
+        .neon-glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.4), inset 0 0 10px rgba(0, 245, 212, 0.2);
+        }
+
+        /* CRT Scanline Overlay */
+        .scanline {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0, 0, 0, 0.25) 50%,
+                rgba(0, 0, 0, 0.25)
+            );
+            background-size: 100% 4px;
+        }
+
+        /* Text glow helpers */
+        .text-glow-pink {
+            text-shadow: 0 0 8px rgba(255, 42, 133, 0.8), 0 0 18px rgba(255, 42, 133, 0.5);
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 8px rgba(0, 245, 212, 0.8), 0 0 18px rgba(0, 245, 212, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff2a85;
+            border-radius: 4px;
+        }
+
+        /* Floating Snippets Animation */
+        .floating-snippet {
+            position: fixed;
+            pointer-events: none;
+            z-index: 5;
+            font-family: 'Fira Code', monospace;
+            opacity: 0.25;
+            color: #00f5d4;
+            animation: floatSlow 12s infinite linear;
+        }
+        @keyframes floatSlow {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.35; }
+            80% { opacity: 0.35; }
+            100% { transform: translateY(-20vh) rotate(15deg); opacity: 0; }
+        }
+
+        /* Floating Hearts Particles */
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 40;
+            animation: floatUp 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.6) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-80vh) scale(1.4) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Terminal Shake Effect */
+        .shake-screen {
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-3px, 0, 0); }
+            20%, 80% { transform: translate3d(5px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-7px, 0, 0); }
+            40%, 60% { transform: translate3d(7px, 0, 0); }
+        }
+
+        /* Candle Flame Flicker */
+        .flame {
+            transform-origin: center bottom;
+            animation: flicker 0.8s ease-in-out infinite alternate;
+        }
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-3deg); opacity: 0.95; filter: drop-shadow(0 0 6px #ffbe0b); }
+            50% { transform: scale(1.15) rotate(3deg); opacity: 1; filter: drop-shadow(0 0 12px #ff007f); }
+            100% { transform: scale(0.9) rotate(-1deg); opacity: 0.85; filter: drop-shadow(0 0 8px #fb5607); }
+        }
+
+        .cursor-blink {
+            animation: blink 0.9s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Polaroid Hover Effect */
+        .polaroid-card {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .polaroid-card:hover {
+            transform: translateY(-8px) rotate(1deg) scale(1.03);
+            box-shadow: 0 15px 30px rgba(255, 42, 133, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative bg-darkBg text-slate-100 antialiased overflow-x-hidden">
+
+    <!-- Ambient Particle Canvas -->
+    <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Global CRT Scanline Layer -->
+    <div class="pointer-events-none fixed inset-0 scanline z-50 opacity-20"></div>
+
+    <!-- Floating Background Code Snippets -->
+    <div id="codeSnippetsContainer" class="pointer-events-none"></div>
+
+    <!-- ========================================== -->
+    <!-- 1. LOADING SCREEN / INITIALIZER (Sister.exe) -->
+    <!-- ========================================== -->
+    <div id="loadingScreen" class="fixed inset-0 z-50 bg-darkBg flex flex-col items-center justify-center p-4 sm:p-6 text-left">
+        <div class="w-full max-w-xl glass-panel rounded-2xl p-5 sm:p-7 border border-neonPink/40 shadow-2xl relative overflow-hidden">
+            <!-- IDE Window Header -->
+            <div class="flex items-center justify-between border-b border-slate-700/80 pb-3 mb-4">
+                <div class="flex items-center space-x-2">
+                    <span class="w-3 h-3 rounded-full bg-red-500 inline-block shadow"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block shadow"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500 inline-block shadow"></span>
+                    <span class="text-xs text-slate-400 font-mono ml-2">Sister.exe — Brother-Sister Protocol Loader</span>
+                </div>
+                <span class="text-[10px] sm:text-xs text-neonPink font-mono font-bold animate-pulse">● INITIALIZING...</span>
+            </div>
+
+            <!-- Cyber Terminal Logs -->
+            <div id="terminalLog" class="font-mono text-xs sm:text-sm space-y-2 h-52 overflow-y-auto pr-2 text-neonCyan mb-6 bg-darkBg/80 p-3 rounded-xl border border-slate-800">
+                <!-- Terminal logs appended dynamically -->
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="mb-5">
+                <div class="flex justify-between text-xs text-neonPink mb-1.5 font-mono">
+                    <span id="loadStatusText">> Allocating infinite_love.RAM...</span>
+                    <span id="loadPercent" class="font-bold">0%</span>
+                </div>
+                <div class="w-full bg-slate-800/80 rounded-full h-3.5 p-0.5 border border-neonPink/30 overflow-hidden">
+                    <div id="progressBar" class="bg-gradient-to-r from-neonPurple via-neonPink to-neonCyan h-full w-0 rounded-full transition-all duration-200"></div>
+                </div>
+            </div>
+
+            <!-- Access Granted Button -->
+            <button id="enterAppBtn" onclick="unlockApplication()" class="hidden w-full py-4 bg-gradient-to-r from-neonPink via-hotPink to-neonPurple hover:opacity-90 text-white font-cute font-bold text-base sm:text-lg rounded-xl shadow-lg transform hover:scale-[1.02] active:scale-95 transition duration-200 neon-glow-pink flex items-center justify-center space-x-2">
+                <span>EXECUTE SISTER.EXE 🚀</span>
+                <i class="fa-solid fa-heart animate-bounce text-yellow-300 ml-1"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 2. MAIN DASHBOARD / IDE CONTAINER -->
+    <!-- ========================================== -->
+    <div id="mainDashboard" class="hidden flex-col min-h-screen z-10 relative">
+
+        <!-- Top Navigation Bar styled as IDE Header & Tabs -->
+        <header class="sticky top-0 z-40 glass-panel border-b border-neonPink/20 px-3 sm:px-6 py-2.5">
+            <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center space-x-2.5">
+                    <div class="w-7 h-7 rounded-lg bg-neonPink/20 border border-neonPink flex items-center justify-center text-neonPink font-mono font-bold text-xs">
+                        👫
+                    </div>
+                    <div>
+                        <div class="text-xs sm:text-sm font-bold font-mono text-white flex items-center gap-2">
+                            Sister.exe <span class="text-neonPink text-[10px] px-2 py-0.5 bg-neonPink/20 rounded-full border border-neonPink/40">Brother&Sister_Edition</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Synth Sound Toggle & Vibrator status -->
+                <div class="flex items-center space-x-2">
+                    <button onclick="toggleAudio()" id="audioBtn" class="px-3 py-1.5 rounded-lg bg-terminalCard border border-neonCyan/40 hover:border-neonCyan text-neonCyan text-xs font-mono flex items-center space-x-2 transition active:scale-95">
+                        <i id="audioIcon" class="fa-solid fa-volume-high"></i>
+                        <span id="audioText" class="hidden sm:inline">Synth: ON</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- IDE Styled Navigation Tabs -->
+            <nav class="max-w-6xl mx-auto mt-2.5 pt-2 border-t border-slate-800 flex flex-wrap gap-1.5 justify-start text-xs font-mono overflow-x-auto pb-1">
+                <button onclick="switchTab('home')" id="tab-home" class="nav-tab active-tab px-3 py-1.5 rounded-t-lg bg-neonPink/20 text-neonPink border-t border-x border-neonPink flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-file-code text-neonPink"></i> /Home.exe
+                </button>
+                <button onclick="switchTab('quiz')" id="tab-quiz" class="nav-tab px-3 py-1.5 rounded-t-lg bg-terminalCard/60 text-slate-400 hover:text-neonCyan border-t border-x border-slate-800 hover:border-neonCyan/50 flex items-center gap-1.5 transition">
+                    <i class="fa-brands fa-python text-neonCyan"></i> /Quiz.py
+                </button>
+                <button onclick="switchTab('roast')" id="tab-roast" class="nav-tab px-3 py-1.5 rounded-t-lg bg-terminalCard/60 text-slate-400 hover:text-neonPink border-t border-x border-slate-800 hover:border-neonPink/50 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-terminal text-neonPink"></i> /Roast.sh
+                </button>
+                <button onclick="switchTab('surprise')" id="tab-surprise" class="nav-tab px-3 py-1.5 rounded-t-lg bg-terminalCard/60 text-slate-400 hover:text-neonPurple border-t border-x border-slate-800 hover:border-neonPurple/50 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-cake-candles text-neonPurple"></i> /Cake_Vault.bin
+                </button>
+                <button onclick="switchTab('bond')" id="tab-bond" class="nav-tab px-3 py-1.5 rounded-t-lg bg-terminalCard/60 text-slate-400 hover:text-softPink border-t border-x border-slate-800 hover:border-softPink/50 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-heart text-softPink"></i> /Bond.md
+                </button>
+            </nav>
+        </header>
+
+        <!-- Dynamic Content Sections -->
+        <main class="flex-grow max-w-5xl w-full mx-auto p-4 sm:p-6 space-y-6">
+
+            <!-- SECTION 1: HOME.EXE -->
+            <section id="sec-home" class="tab-content block space-y-6">
+                <!-- Hero Banner -->
+                <div class="glass-panel rounded-2xl p-6 sm:p-10 text-center relative overflow-hidden border border-neonPink/40 neon-glow-pink">
+                    <div class="absolute top-3 left-4 text-[10px] sm:text-xs font-mono text-slate-400">// HappyBirthday.jsx</div>
+                    
+                    <div class="mt-2 text-xs font-mono text-neonCyan">
+                        <code>&lt;HappyBirthday Name="Navya" Role="Best Sister" Level="Up" /&gt;</code>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-cute font-bold text-transparent bg-clip-text bg-gradient-to-r from-neonPink via-pastelPink to-neonCyan my-4 text-glow-pink leading-tight">
+                        Happy Birthday, Navya 💗
+                    </h1>
+                    
+                    <!-- Subtitle Header -->
+                    <p class="text-xs sm:text-base font-mono text-neonPink font-bold mb-3">
+                        System Status: Officially 1 Year Older, 0% Cooler 😎
+                    </p>
+
+                    <!-- Blinking Terminal Subtitle -->
+                    <div class="font-mono text-xs sm:text-sm text-neonCyan inline-block bg-darkBg/80 px-4 py-2 rounded-xl border border-neonCyan/30 mb-6 max-w-full">
+                        <span id="typewriterText"></span><span class="cursor-blink">|</span>
+                    </div>
+
+                    <!-- Interactive Code Trigger Button -->
+                    <div class="flex justify-center gap-3">
+                        <button onclick="triggerConfettiExplosion()" class="px-5 py-2.5 bg-neonPink/20 hover:bg-neonPink/30 border border-neonPink text-neonPink font-mono text-xs rounded-xl shadow transition active:scale-95 flex items-center gap-2">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> executeConfetti();
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sibling Dashboard Telemetry -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                    <div class="glass-panel p-4 rounded-xl border border-neonPink/30 flex flex-col justify-between">
+                        <div class="text-[11px] font-mono text-slate-400"><i class="fa-solid fa-bolt text-neonPink mr-1"></i> Being Annoying</div>
+                        <div class="text-xl sm:text-2xl font-bold font-mono text-neonPink text-glow-pink mt-1">365 Days/Yr</div>
+                        <div class="text-[9px] font-mono text-red-400 mt-1">● Peak Performance</div>
+                    </div>
+
+                    <div class="glass-panel p-4 rounded-xl border border-neonCyan/30 flex flex-col justify-between">
+                        <div class="text-[11px] font-mono text-slate-400"><i class="fa-solid fa-cookie-bite text-neonCyan mr-1"></i> Sweets Stolen</div>
+                        <div class="text-xl sm:text-2xl font-bold font-mono text-neonCyan text-glow-cyan mt-1">9,999x</div>
+                        <div class="text-[9px] font-mono text-emerald-400 mt-1">● From Brother's Stash</div>
+                    </div>
+
+                    <div class="glass-panel p-4 rounded-xl border border-neonPurple/30 flex flex-col justify-between">
+                        <div class="text-[11px] font-mono text-slate-400"><i class="fa-solid fa-shirt text-neonPurple mr-1"></i> Hoodies Borrowed</div>
+                        <div class="text-xl sm:text-2xl font-bold font-mono text-neonPurple mt-1">100% Mine Now</div>
+                        <div class="text-[9px] font-mono text-purple-300 mt-1">● Never Returning</div>
+                    </div>
+
+                    <div class="glass-panel p-4 rounded-xl border border-pastelYellow/30 flex flex-col justify-between">
+                        <div class="text-[11px] font-mono text-slate-400"><i class="fa-solid fa-heart text-pastelYellow mr-1"></i> Unconditional Love</div>
+                        <div class="text-xl sm:text-2xl font-bold font-mono text-pastelYellow mt-1">∞ %</div>
+                        <div class="text-[9px] font-mono text-yellow-200 mt-1">● Unbreakable Bond</div>
+                    </div>
+                </div>
+
+                <!-- Interactive Terminal Dialogue Shell -->
+                <div class="glass-panel p-5 rounded-2xl border border-neonCyan/30 space-y-3">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                        <div class="text-xs font-mono text-neonCyan flex items-center gap-2">
+                            <i class="fa-solid fa-terminal"></i> Brother_Sister_Banter_Shell.sh
+                        </div>
+                        <span class="text-[10px] text-slate-500 font-mono">Rotating Quotes</span>
+                    </div>
+
+                    <div id="dialogueBox" class="bg-darkBg p-4 rounded-xl border border-slate-800 font-mono text-xs sm:text-sm text-neonPink min-h-[70px] flex items-center">
+                        "Brother: 'Can you get me a glass of water?' Navya: 'I'm busy holding my phone.' Brother: 'I'll give you a bite of my food.' Navya: *runs at light speed*"
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button onclick="cycleDialogue()" class="px-4 py-2 bg-neonCyan/20 hover:bg-neonCyan/30 border border-neonCyan text-neonCyan font-mono text-xs rounded-lg transition active:scale-95 flex items-center gap-2">
+                            <i class="fa-solid fa-arrows-rotate"></i> Next Brother-Sister Thought
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: SIBLING QUIZ (/Quiz.py) -->
+            <section id="sec-quiz" class="tab-content hidden space-y-6">
+                <div class="glass-panel p-5 sm:p-8 rounded-2xl border border-neonCyan/30">
+                    <div class="flex items-center justify-between border-b border-slate-700/80 pb-4 mb-6">
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-cute font-bold text-neonCyan text-glow-cyan">🐍 The Brother-Sister Verification Protocol</h2>
+                            <p class="text-xs font-mono text-slate-400 mt-0.5">Diagnosing sibling dynamics & truth levels...</p>
+                        </div>
+                        <div class="text-right">
+                            <span id="quizScoreDisplay" class="text-sm sm:text-base font-mono font-bold text-neonPink">Score: 0/4</span>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Quiz Container -->
+                    <div id="quizContainer" class="space-y-6"></div>
+
+                    <!-- Quiz Result Card -->
+                    <div id="quizResult" class="hidden text-center space-y-4 pt-6 border-t border-slate-800">
+                        <div class="text-2xl sm:text-3xl font-cute font-bold text-neonPink text-glow-pink">🏆 CERTIFIED SUPREME SISTER!</div>
+                        <p class="text-xs sm:text-sm font-mono text-slate-300">Your score: <span id="finalScore" class="text-neonCyan font-bold">4/4</span>. Verification completed: Official Badge Unlocked!</p>
+                        
+                        <div class="inline-block p-4 rounded-2xl bg-darkBg border border-neonPink/40 my-2">
+                            <div class="text-3xl mb-1">🏅</div>
+                            <div class="font-cute font-bold text-neonPink text-sm">BADGE UNLOCKED</div>
+                            <div class="font-mono text-xs text-neonCyan">"Partner in Crime & Master remote Stealer"</div>
+                        </div>
+
+                        <div>
+                            <button onclick="resetQuiz()" class="px-6 py-2.5 bg-neonPink hover:bg-hotPink text-white font-mono text-xs rounded-xl shadow transition active:scale-95">
+                                <i class="fa-solid fa-arrow-rotate-left mr-1.5"></i> Retry Verification
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: ROAST BUTTON (/Roast.sh) -->
+            <section id="sec-roast" class="tab-content hidden space-y-6">
+                <div class="glass-panel p-5 sm:p-8 rounded-2xl border border-neonPink/30 text-center space-y-6">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-cute font-bold text-neonPink text-glow-pink">🔥 Roast_Navya.sh Generator</h2>
+                        <p class="text-xs font-mono text-slate-400 mt-1">Warning: Brotherly teasing executable loaded with 100% affection.</p>
+                    </div>
+
+                    <!-- Interactive Terminal Roast Display -->
+                    <div id="roastCard" class="bg-darkBg p-6 rounded-xl border border-neonPink/40 min-h-[110px] flex items-center justify-center font-mono text-xs sm:text-sm text-neonCyan shadow-inner transition-all duration-300">
+                        <p id="roastText">> Click button below to execute brotherly roast sequence...</p>
+                    </div>
+
+                    <!-- Action Controls -->
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button onclick="triggerRoast()" class="px-5 py-3 bg-gradient-to-r from-red-500 via-neonPink to-neonPurple text-white font-mono font-bold text-xs sm:text-sm rounded-xl shadow-lg hover:opacity-90 active:scale-95 transition flex items-center gap-2">
+                            <i class="fa-solid fa-fire"></i> RUN ROAST.SH
+                        </button>
+                        
+                        <button onclick="toggleComplimentMode()" class="px-5 py-3 bg-neonCyan/20 border border-neonCyan text-neonCyan hover:bg-neonCyan/30 font-mono font-bold text-xs sm:text-sm rounded-xl shadow-lg active:scale-95 transition flex items-center gap-2">
+                            <i class="fa-solid fa-heart-circle-check"></i> Sweet Mode Recovery ❤️
+                        </button>
+                    </div>
+
+                    <!-- Compliment Counter Card -->
+                    <div id="complimentBox" class="hidden p-4 rounded-xl bg-neonPurple/20 border border-neonPurple text-left text-xs font-mono text-pink-200">
+                        <div class="font-bold text-neonPink mb-1"><i class="fa-solid fa-shield-heart mr-1"></i> Brother's Sweet Defense Mode:</div>
+                        <div id="complimentText">"Even after stealing my oversized hoodies and arguing over the remote, you're still the most caring sister anyone could ask for!"</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: SURPRISE VAULT (/Cake_Vault.bin) -->
+            <section id="sec-surprise" class="tab-content hidden space-y-6">
+                <!-- Lock State -->
+                <div id="vaultLocked" class="glass-panel p-6 sm:p-8 rounded-2xl border border-neonPurple/40 text-center space-y-5">
+                    <div class="w-14 h-14 rounded-2xl bg-neonPurple/20 border border-neonPurple flex items-center justify-center mx-auto text-2xl text-neonPurple">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-cute font-bold text-neonPurple">Secret Birthday Vault</h2>
+                        <p class="text-xs font-mono text-slate-400 mt-1">Enter passcode <span class="text-neonPink font-bold">NAVYA</span> or click the 3 security keys!</p>
+                    </div>
+
+                    <div class="max-w-xs mx-auto flex gap-2">
+                        <input type="text" id="passcodeInput" placeholder="PASSCODE" class="w-full px-4 py-2 bg-darkBg border border-neonPurple rounded-lg font-mono text-center text-xs text-neonPink uppercase focus:outline-none focus:border-neonPink">
+                        <button onclick="checkPasscode()" class="px-4 py-2 bg-neonPurple text-white font-mono text-xs rounded-lg hover:bg-neonPink transition active:scale-95">
+                            UNLOCK
+                        </button>
+                    </div>
+
+                    <div class="flex justify-center gap-3 pt-2">
+                        <button onclick="toggleLock(1)" id="lock1" class="w-11 h-11 rounded-xl bg-terminalCard border border-slate-700 text-slate-500 flex items-center justify-center transition active:scale-95">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <button onclick="toggleLock(2)" id="lock2" class="w-11 h-11 rounded-xl bg-terminalCard border border-slate-700 text-slate-500 flex items-center justify-center transition active:scale-95">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <button onclick="toggleLock(3)" id="lock3" class="w-11 h-11 rounded-xl bg-terminalCard border border-slate-700 text-slate-500 flex items-center justify-center transition active:scale-95">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Unlocked Content State -->
+                <div id="vaultUnlocked" class="hidden glass-panel p-6 sm:p-10 rounded-2xl border border-neonPink/40 text-center space-y-8">
+                    <div>
+                        <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] sm:text-xs font-mono rounded-full">● VAULT DECRYPTED SUCCESS</span>
+                        <h2 class="text-2xl sm:text-3xl font-cute font-bold text-neonPink text-glow-pink mt-3">Make a Wish & Blow Out Candles! 🎂</h2>
+                        <p class="text-xs font-mono text-slate-300 mt-1">Tap the candles or use button below to blow them out!</p>
+                    </div>
+
+                    <!-- Interactive Blowable Pixel Birthday Cake -->
+                    <div class="relative w-52 h-48 mx-auto flex flex-col items-center justify-end pb-4">
+                        <!-- Candles Container -->
+                        <div class="flex space-x-5 mb-2 z-10">
+                            <div class="flex flex-col items-center cursor-pointer" onclick="blowCandle(1)">
+                                <div id="flame1" class="w-3 h-5 bg-gradient-to-t from-yellow-500 via-orange-400 to-white rounded-full flame"></div>
+                                <div class="w-2.5 h-8 bg-pink-400 rounded-sm shadow"></div>
+                            </div>
+                            <div class="flex flex-col items-center cursor-pointer" onclick="blowCandle(2)">
+                                <div id="flame2" class="w-3 h-5 bg-gradient-to-t from-yellow-500 via-orange-400 to-white rounded-full flame"></div>
+                                <div class="w-2.5 h-10 bg-cyan-400 rounded-sm shadow"></div>
+                            </div>
+                            <div class="flex flex-col items-center cursor-pointer" onclick="blowCandle(3)">
+                                <div id="flame3" class="w-3 h-5 bg-gradient-to-t from-yellow-500 via-orange-400 to-white rounded-full flame"></div>
+                                <div class="w-2.5 h-8 bg-purple-400 rounded-sm shadow"></div>
+                            </div>
+                        </div>
+
+                        <!-- Cake Layers -->
+                        <div class="w-44 h-16 bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 rounded-t-2xl border-t-4 border-white/60 shadow-lg relative flex items-center justify-center">
+                            <span class="font-pixel text-[9px] text-white tracking-widest">NAVYA DAY</span>
+                        </div>
+                        <div class="w-52 h-10 bg-gradient-to-r from-purple-700 via-pink-600 to-purple-700 rounded-b-xl border-t-2 border-pink-300/40 shadow-2xl"></div>
+                    </div>
+
+                    <div class="flex justify-center gap-3">
+                        <button onclick="blowAllCandles()" class="px-6 py-2.5 bg-neonPink hover:bg-hotPink text-white font-mono text-xs rounded-xl shadow-lg transition active:scale-95 flex items-center gap-2">
+                            <i class="fa-solid fa-wind"></i> Blow Out All Candles
+                        </button>
+                    </div>
+
+                    <!-- Sister Privilege Vouchers -->
+                    <div class="pt-6 border-t border-slate-800">
+                        <h3 class="text-base font-cute font-bold text-neonCyan mb-4">📜 Redeemable Sibling Vouchers from Brother</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+                            <div class="p-3.5 rounded-xl bg-darkBg border border-neonPink/30">
+                                <div class="text-[10px] font-mono text-neonPink font-bold">VOUCHER #001</div>
+                                <div class="text-xs font-cute text-white font-bold mt-1">1x TV Remote Pass</div>
+                                <div class="text-[10px] font-mono text-slate-400 mt-1">Full rights to watch whatever you want for 24 hours.</div>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-darkBg border border-neonCyan/30">
+                                <div class="text-[10px] font-mono text-neonCyan font-bold">VOUCHER #002</div>
+                                <div class="text-xs font-cute text-white font-bold mt-1">1x Free Treat / Coffee</div>
+                                <div class="text-[10px] font-mono text-slate-400 mt-1">Redeemable anytime brother buys food or drinks.</div>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-darkBg border border-neonPurple/30">
+                                <div class="text-[10px] font-mono text-neonPurple font-bold">VOUCHER #003</div>
+                                <div class="text-xs font-cute text-white font-bold mt-1">1x Immunity from Chores</div>
+                                <div class="text-[10px] font-mono text-slate-400 mt-1">Pass your chore duty to brother for 1 full day.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: OUR BOND (/Bond.md) -->
+            <section id="sec-bond" class="tab-content hidden space-y-6">
+                <div class="glass-panel p-6 sm:p-10 rounded-2xl border border-softPink/40 neon-glow-pink">
+                    <div class="flex items-center space-x-2 border-b border-slate-700/80 pb-3 mb-6">
+                        <i class="fa-solid fa-heart text-softPink"></i>
+                        <span class="text-xs font-mono text-softPink">Heartfelt_Logs.md — Brother & Sister Bond</span>
+                    </div>
+
+                    <!-- Heartfelt Markdown Note -->
+                    <div class="space-y-4 font-mono text-xs sm:text-sm leading-relaxed text-slate-200 bg-darkBg/70 p-5 sm:p-7 rounded-xl border border-slate-800">
+                        <p class="text-neonPink font-bold text-sm sm:text-base font-cute">// To Navya, My Sister, Partner in Crime & Best Friend ❤️</p>
+                        <p>
+                            Family isn't only about blood; it's about love, trust, continuous banter, late-night talks, inside jokes, and unconditional support through every single bug in life.
+                        </p>
+                        <p>
+                            You're not just my sister, you're my best friend. Through every argument over the remote and every shared secret, having you as my sister makes life infinitely brighter and way more fun.
+                        </p>
+                        <p class="text-neonCyan">
+                            Thank you for all the memories, the endless laughs, and for being the awesome sister you are. Always in your corner!
+                        </p>
+                        <div class="pt-2 font-handwritten text-2xl sm:text-3xl text-pastelPink text-right">
+                            Happy Birthday Navya! From your proud brother. ✨💖
+                        </div>
+                    </div>
+
+                    <!-- Memory Polaroid Cards Grid -->
+                    <div class="pt-6 border-t border-slate-800 space-y-4">
+                        <h3 class="text-sm font-mono text-neonCyan flex items-center gap-2">
+                            <i class="fa-solid fa-images"></i> Memory_Archive.dll
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="polaroid-card bg-slate-100 text-slate-800 p-3 rounded-xl shadow-lg border border-slate-300">
+                                <div class="h-32 bg-gradient-to-br from-pink-400 to-purple-500 rounded-lg flex items-center justify-center text-3xl">
+                                    📸
+                                </div>
+                                <div class="font-handwritten text-xl font-bold text-center mt-2.5 text-slate-800">"Partners in Crime"</div>
+                                <p class="text-[10px] font-mono text-slate-500 text-center">Teasing each other since Day 1</p>
+                            </div>
+
+                            <div class="polaroid-card bg-slate-100 text-slate-800 p-3 rounded-xl shadow-lg border border-slate-300">
+                                <div class="h-32 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center text-3xl">
+                                    🍕
+                                </div>
+                                <div class="font-handwritten text-xl font-bold text-center mt-2.5 text-slate-800">"Snack Thieves"</div>
+                                <p class="text-[10px] font-mono text-slate-500 text-center">Stealing food & blame-shifting</p>
+                            </div>
+
+                            <div class="polaroid-card bg-slate-100 text-slate-800 p-3 rounded-xl shadow-lg border border-slate-300">
+                                <div class="h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg flex items-center justify-center text-3xl">
+                                    ✨
+                                </div>
+                                <div class="font-handwritten text-xl font-bold text-center mt-2.5 text-slate-800">"Always Unconditional"</div>
+                                <p class="text-[10px] font-mono text-slate-500 text-center">Best sister in the entire universe</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sister Hug Action Trigger -->
+                    <div class="text-center pt-6">
+                        <button onclick="sendVirtualHug()" class="px-8 py-4 bg-gradient-to-r from-neonPink via-hotPink to-neonPurple text-white font-cute font-bold text-base sm:text-lg rounded-2xl shadow-xl hover:scale-105 active:scale-95 transition neon-glow-pink flex items-center justify-center mx-auto space-x-2">
+                            <i class="fa-solid fa-heart"></i>
+                            <span>SEND VIRTUAL SISTER HUG</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- IDE Footer -->
+        <footer class="text-center py-4 border-t border-slate-800 text-[11px] font-mono text-slate-500">
+            Sister.exe • Brother & Sister Edition • Built with 💖 for Navya • Happy Birthday!
+        </footer>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT LOGIC & SYNTH ENGINE -->
+    <!-- ========================================== -->
+    <script>
+        /* --- Web Audio API Synth Engine --- */
+        let audioCtx = null;
+        let isAudioMuted = false;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSound(freq, type = 'sine', duration = 0.15) {
+            if (isAudioMuted) return;
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {}
+        }
+
+        function playVictoryTune() {
+            if (isAudioMuted) return;
+            const notes = [523, 659, 783, 1046];
+            notes.forEach((note, idx) => {
+                setTimeout(() => playSound(note, 'triangle', 0.2), idx * 120);
+            });
+        }
+
+        function toggleAudio() {
+            isAudioMuted = !isAudioMuted;
+            const icon = document.getElementById('audioIcon');
+            const text = document.getElementById('audioText');
+            if (isAudioMuted) {
+                icon.className = 'fa-solid fa-volume-xmark';
+                text.innerText = 'Synth: OFF';
+            } else {
+                icon.className = 'fa-solid fa-volume-high';
+                text.innerText = 'Synth: ON';
+                playSound(600, 'sine', 0.15);
+            }
+        }
+
+        /* --- Haptic Feedback Helper --- */
+        function triggerHaptic() {
+            if ("vibrate" in navigator) {
+                navigator.vibrate([50]);
+            }
+        }
+
+        /* --- Floating Code Snippets Background --- */
+        const snippets = [
+            "if (navya.isSister) brother.isProud = true;",
+            "while(brother.hasFood) navya.steal();",
+            "import { Navya } from 'brother_life';",
+            "const brotherSisterBond = Infinity;",
+            "Sister.exe --birthday=true"
+        ];
+
+        function createFloatingCodeSnippets() {
+            const container = document.getElementById('codeSnippetsContainer');
+            snippets.forEach((text, i) => {
+                const div = document.createElement('div');
+                div.className = 'floating-snippet text-xs';
+                div.innerText = text;
+                div.style.left = (i * 20 + 5) + 'vw';
+                div.style.animationDelay = (i * 2.5) + 's';
+                container.appendChild(div);
+            });
+        }
+
+        /* --- Loading Screen Boot Loader --- */
+        const bootLogs = [
+            "> Booting Sister.exe kernel v2026...",
+            "> Loading sibling_memories.dll...",
+            "> Initializing Bribing_Sister_Protocol.sys...",
+            "> Fetching_Infinite_Love.pkg...",
+            "> Optimizing brotherly_teasing_database.json...",
+            "> Bypassing sibling_rivalry.firewall... SUCCESS",
+            "> Ready for execution."
+        ];
+
+        let logIndex = 0;
+        function runBootSequence() {
+            const logContainer = document.getElementById('terminalLog');
+            const progressBar = document.getElementById('progressBar');
+            const loadPercent = document.getElementById('loadPercent');
+            const enterBtn = document.getElementById('enterAppBtn');
+            const statusText = document.getElementById('loadStatusText');
+
+            const interval = setInterval(() => {
+                if (logIndex < bootLogs.length) {
+                    const p = document.createElement('p');
+                    p.innerText = bootLogs[logIndex];
+                    logContainer.appendChild(p);
+                    logContainer.scrollTop = logContainer.scrollHeight;
+
+                    statusText.innerText = bootLogs[logIndex];
+                    let percent = Math.round(((logIndex + 1) / bootLogs.length) * 100);
+                    progressBar.style.width = percent + '%';
+                    loadPercent.innerText = percent + '%';
+
+                    playSound(250 + logIndex * 80, 'square', 0.08);
+                    logIndex++;
+                } else {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        enterBtn.classList.remove('hidden');
+                        playSound(880, 'sine', 0.25);
+                    }, 200);
+                }
+            }, 450);
+        }
+
+        function unlockApplication() {
+            triggerHaptic();
+            playSound(700, 'sine', 0.25);
+            document.getElementById('loadingScreen').classList.add('hidden');
+            document.getElementById('mainDashboard').classList.remove('hidden');
+            document.getElementById('mainDashboard').classList.add('flex');
+            
+            triggerConfettiExplosion();
+            playVictoryTune();
+            startTypewriter();
+        }
+
+        /* --- Tab Switcher --- */
+        function switchTab(tabId) {
+            triggerHaptic();
+            playSound(480, 'sine', 0.08);
+
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-tab').forEach(el => {
+                el.className = 'nav-tab px-3 py-1.5 rounded-t-lg bg-terminalCard/60 text-slate-400 hover:text-neonPink border-t border-x border-slate-800 flex items-center gap-1.5 transition';
+            });
+
+            document.getElementById('sec-' + tabId).classList.remove('hidden');
+            
+            const activeNav = document.getElementById('tab-' + tabId);
+            if (activeNav) {
+                activeNav.className = 'nav-tab active-tab px-3 py-1.5 rounded-t-lg bg-neonPink/20 text-neonPink border-t border-x border-neonPink flex items-center gap-1.5 transition';
+            }
+        }
+
+        /* --- Typewriter Subtitle --- */
+        const typewriterPhrases = [
+            "Status: Officially Leveling Up Today! 🎈",
+            "Initializing brother-sister celebration...",
+            "Warning: Best sister on the planet detected!"
+        ];
+        let typeIdx = 0, charIdx = 0;
+        function startTypewriter() {
+            const el = document.getElementById('typewriterText');
+            if (!el) return;
+            
+            if (charIdx < typewriterPhrases[typeIdx].length) {
+                el.innerHTML += typewriterPhrases[typeIdx].charAt(charIdx);
+                charIdx++;
+                setTimeout(startTypewriter, 60);
+            } else {
+                setTimeout(() => {
+                    el.innerHTML = '';
+                    charIdx = 0;
+                    typeIdx = (typeIdx + 1) % typewriterPhrases.length;
+                    startTypewriter();
+                }, 2200);
+            }
+        }
+
+        /* --- Confetti Trigger --- */
+        function triggerConfettiExplosion() {
+            triggerHaptic();
+            confetti({
+                particleCount: 90,
+                spread: 80,
+                origin: { y: 0.6 }
+            });
+        }
+
+        /* --- Dynamic Sibling Banter Shell --- */
+        const dialogues = [
+            '"Brother: \'Can you get me a glass of water?\' Navya: \'I\'m busy.\' Brother: \'I\'ll give you food.\' Navya: *runs at light speed*"',
+            '"Who always steals the TV remote? Navya. Who gets blamed? Also Navya (fair trade)."',
+            '"Warning: High risk of Navya stealing brother\'s oversized hoodie today."',
+            '"Brother-Sister Rule #1: You can tease your sister 24/7, but if anyone else does, they deal with you."'
+        ];
+        let dialogueIdx = 0;
+        function cycleDialogue() {
+            triggerHaptic();
+            playSound(520, 'sine', 0.1);
+            dialogueIdx = (dialogueIdx + 1) % dialogues.length;
+            document.getElementById('dialogueBox').innerText = dialogues[dialogueIdx];
+        }
+
+        /* --- Brother-Sister Sibling Quiz --- */
+        const quizData = [
+            {
+                q: "1. Who always steals the TV remote and changes the channel?",
+                options: ["Navya without regret", "Brother peacefully", "The TV remote disappeared into thin air"],
+                correct: 0
+            },
+            {
+                q: "2. What happens when you ask your brother for a favor?",
+                options: ["He asks for food/bribe first", "Instant execution", "Error 404: Favor rejected"],
+                correct: 0
+            },
+            {
+                q: "3. What is the supreme rule of stolen brother hoodies?",
+                options: ["Return after 1 day", "It's hers forever now", "Wash and give back"],
+                correct: 1
+            },
+            {
+                q: "4. What happens if someone else teases Navya?",
+                options: ["Brother ignores it", "Brother defends her immediately", "Brother joins the enemy side"],
+                correct: 1
+            }
+        ];
+
+        let quizScore = 0;
+        let answeredCount = 0;
+
+        function loadQuiz() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = '';
+            quizData.forEach((item, index) => {
+                const qCard = document.createElement('div');
+                qCard.className = 'p-4 rounded-xl bg-darkBg border border-slate-800 space-y-3';
+                qCard.innerHTML = `
+                    <div class="text-xs sm:text-sm font-mono text-neonPink font-bold">${item.q}</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        ${item.options.map((opt, i) => `
+                            <button onclick="answerQuiz(${index}, ${i}, this)" class="q-btn-${index} px-3 py-2 rounded-lg bg-terminalCard border border-slate-700 text-xs font-mono text-slate-300 hover:border-neonCyan transition active:scale-95">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(qCard);
+            });
+        }
+
+        function answerQuiz(qIdx, optionIdx, btnEl) {
+            triggerHaptic();
+            const buttons = document.querySelectorAll(`.q-btn-${qIdx}`);
+            buttons.forEach(b => b.disabled = true);
+
+            if (optionIdx === quizData[qIdx].correct) {
+                btnEl.className = 'px-3 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500 text-xs font-mono text-emerald-400 font-bold';
+                playSound(750, 'sine', 0.15);
+                confetti({ particleCount: 25, spread: 40 });
+                quizScore++;
+            } else {
+                btnEl.className = 'px-3 py-2 rounded-lg bg-red-500/20 border border-red-500 text-xs font-mono text-red-400';
+                playSound(220, 'sawtooth', 0.2);
+            }
+
+            answeredCount++;
+            document.getElementById('quizScoreDisplay').innerText = `Score: ${quizScore}/${quizData.length}`;
+
+            if (answeredCount === quizData.length) {
+                setTimeout(() => {
+                    document.getElementById('quizResult').classList.remove('hidden');
+                    document.getElementById('finalScore').innerText = `${quizScore}/${quizData.length}`;
+                    playVictoryTune();
+                    confetti({ particleCount: 70, spread: 70 });
+                }, 400);
+            }
+        }
+
+        function resetQuiz() {
+            quizScore = 0;
+            answeredCount = 0;
+            document.getElementById('quizScoreDisplay').innerText = `Score: 0/${quizData.length}`;
+            document.getElementById('quizResult').classList.add('hidden');
+            loadQuiz();
+        }
+
+        /* --- Brotherly Roast Generator --- */
+        const roasts = [
+            "\"Error 404: Brain not found when choosing outfits in the morning.\"",
+            "\"Sister.exe has stopped working after 1 hour of studying.\"",
+            "\"Warning: High risk of stealing my oversized hoodie today.\"",
+            "\"Takes 3 business days to reply to brother's text, but 0.2s for gossip.\""
+        ];
+        let roastIdx = 0;
+
+        function triggerRoast() {
+            triggerHaptic();
+            playSound(320, 'sawtooth', 0.15);
+            
+            const card = document.getElementById('roastCard');
+            const txt = document.getElementById('roastText');
+
+            card.classList.add('shake-screen');
+            txt.innerText = roasts[roastIdx];
+            roastIdx = (roastIdx + 1) % roasts.length;
+
+            setTimeout(() => card.classList.remove('shake-screen'), 400);
+        }
+
+        function toggleComplimentMode() {
+            triggerHaptic();
+            playSound(620, 'sine', 0.15);
+            document.getElementById('complimentBox').classList.toggle('hidden');
+        }
+
+        /* --- Vault Unlocking --- */
+        let locksUnlocked = [false, false, false];
+
+        function checkPasscode() {
+            const input = document.getElementById('passcodeInput').value.trim().toUpperCase();
+            if (input === 'NAVYA') {
+                unlockVault();
+            } else {
+                triggerHaptic();
+                playSound(160, 'sawtooth', 0.2);
+                alert('Access Denied! Passcode is NAVYA');
+            }
+        }
+
+        function toggleLock(num) {
+            triggerHaptic();
+            playSound(500 + num * 100, 'sine', 0.1);
+            locksUnlocked[num - 1] = true;
+            document.getElementById(`lock${num}`).className = 'w-11 h-11 rounded-xl bg-neonPurple/20 border border-neonPurple text-neonPurple flex items-center justify-center transition';
+
+            if (locksUnlocked.every(b => b)) {
+                unlockVault();
+            }
+        }
+
+        function unlockVault() {
+            playVictoryTune();
+            confetti({ particleCount: 80, spread: 80 });
+            document.getElementById('vaultLocked').classList.add('hidden');
+            document.getElementById('vaultUnlocked').classList.remove('hidden');
+        }
+
+        /* Candle Blowing Mechanics */
+        let candlesRemaining = 3;
+        function blowCandle(num) {
+            triggerHaptic();
+            const flame = document.getElementById(`flame${num}`);
+            if (flame && flame.style.display !== 'none') {
+                flame.style.display = 'none';
+                playSound(300, 'sine', 0.1);
+                candlesRemaining--;
+                if (candlesRemaining === 0) {
+                    playVictoryTune();
+                    confetti({ particleCount: 110, spread: 100 });
+                }
+            }
+        }
+
+        function blowAllCandles() {
+            blowCandle(1);
+            blowCandle(2);
+            blowCandle(3);
+        }
+
+        /* Send Virtual Sister Hug */
+        function sendVirtualHug() {
+            triggerHaptic();
+            playVictoryTune();
+            
+            document.body.classList.add('shake-screen');
+            setTimeout(() => document.body.classList.remove('shake-screen'), 400);
+
+            for (let i = 0; i < 25; i++) {
+                createFloatingHeart();
+            }
+
+            confetti({
+                particleCount: 130,
+                spread: 110,
+                origin: { y: 0.5 }
+            });
+        }
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart text-2xl';
+            heart.innerText = ['💖', '💗', '✨', '🎂', '💻', '👫'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 95 + 'vw';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        /* Background Particle System */
+        function initParticleCanvas() {
+            const canvas = document.getElementById('particleCanvas');
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            const particles = Array.from({ length: 30 }, () => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 2 + 0.5,
+                color: ['#ff2a85', '#00f5d4', '#9d4edf'][Math.floor(Math.random() * 3)],
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4
+            }));
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0) p.x = width;
+                    if (p.x > width) p.x = 0;
+                    if (p.y < 0) p.y = height;
+                    if (p.y > height) p.y = 0;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = 0.35;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        /* Entry point */
+        window.onload = function() {
+            runBootSequence();
+            loadQuiz();
+            createFloatingCodeSnippets();
+            initParticleCanvas();
+        };
+    </script>
+</body>
+</html>
